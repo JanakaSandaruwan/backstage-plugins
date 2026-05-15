@@ -516,7 +516,10 @@ export const GitSourceField = ({
                       // Tooltip's hover. Re-enable pointer events on the
                       // wrapper so it still fires.
                       return (
-                        <Tooltip title={createDisabledReason}>
+                        <Tooltip
+                          title={createDisabledReason}
+                          placement="left"
+                        >
                           <span
                             style={{ pointerEvents: 'auto', width: '100%' }}
                           >
