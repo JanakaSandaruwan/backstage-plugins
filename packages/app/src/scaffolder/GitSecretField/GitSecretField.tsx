@@ -350,7 +350,10 @@ export const GitSecretField = ({
                 // options, which would also swallow the Tooltip's hover.
                 // Re-enable pointer events on the wrapper so it still fires.
                 return (
-                  <Tooltip title={createDisabledReason} placement="left">
+                  <Tooltip
+                    title={createDisabledReason}
+                    placement="bottom-start"
+                  >
                     <span style={{ pointerEvents: 'auto', width: '100%' }}>
                       <Box
                         display="flex"

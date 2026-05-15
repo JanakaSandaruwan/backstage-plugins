@@ -518,7 +518,7 @@ export const GitSourceField = ({
                       return (
                         <Tooltip
                           title={createDisabledReason}
-                          placement="left"
+                          placement="bottom-start"
                         >
                           <span
                             style={{ pointerEvents: 'auto', width: '100%' }}
