@@ -511,18 +511,26 @@ export const GitSourceField = ({
                 renderOption={option => {
                   if (option === CREATE_NEW_SECRET) {
                     if (!canCreateSecret) {
+                      // The Autocomplete sets pointer-events: none on
+                      // disabled options, which would also swallow the
+                      // Tooltip's hover. Re-enable pointer events on the
+                      // wrapper so it still fires.
                       return (
                         <Tooltip title={createDisabledReason}>
-                          <Box
-                            display="flex"
-                            alignItems="center"
-                            style={{ gap: 8 }}
+                          <span
+                            style={{ pointerEvents: 'auto', width: '100%' }}
                           >
-                            <AddIcon fontSize="small" color="disabled" />
-                            <Typography color="textSecondary">
-                              Create New Git Secret
-                            </Typography>
-                          </Box>
+                            <Box
+                              display="flex"
+                              alignItems="center"
+                              style={{ gap: 8 }}
+                            >
+                              <AddIcon fontSize="small" color="disabled" />
+                              <Typography color="textSecondary">
+                                Create New Git Secret
+                              </Typography>
+                            </Box>
+                          </span>
                         </Tooltip>
                       );
                     }
