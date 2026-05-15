@@ -111,9 +111,11 @@ export const GitSecretField = ({
       : undefined;
   const selectedWorkflowKind = selectedWorkflow?.kind;
 
-  // Fetch available git secrets (generic secrets carrying the git-credentials label)
+  // Fetch available git secrets (generic secrets carrying the git-credentials label).
+  // Skip when secret management is off — the API returns 501 in that mode and
+  // we'd otherwise surface a spurious error on a form the user can't act on.
   const fetchSecrets = useCallback(async () => {
-    if (!nsName) {
+    if (!nsName || !secretManagementEnabled) {
       setSecrets([]);
       return;
     }
@@ -148,7 +150,7 @@ export const GitSecretField = ({
     } finally {
       setLoading(false);
     }
-  }, [nsName, discoveryApi, fetchApi]);
+  }, [nsName, secretManagementEnabled, discoveryApi, fetchApi]);
 
   // Resolve the target workflow plane from the selected workflow's annotations.
   useEffect(() => {
